@@ -13,7 +13,7 @@ Example inputs, in the form of clinical reports, and outputs are provided in the
 After cloning the repository, install the required dependencies using the following commands:
 
 ### Step 1: Create a New Conda Environment
-To ensure dependency compatibility, especially for machine learning libraries, it’s best to create a new environment:
+To ensure dependency compatibility, it’s best to create a new environment:
 
 ```
 conda create -n ocr_deid python=3.11
