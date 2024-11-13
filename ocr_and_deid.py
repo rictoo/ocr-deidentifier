@@ -84,7 +84,7 @@ input_directory = args.input_dir
 output_directory = args.output_dir
 overwrite_flag = args.overwrite
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Users\dadams\OneDrive - The Institute of Cancer Research\Documents\software\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = args.tesseract
 
 # Load text detection model (for bounding boxes)
 logging.info("Loading the text detection model.")
