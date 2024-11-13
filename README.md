@@ -78,6 +78,7 @@ Output file: ``report123.txt``
 There are two configuration files in the config/ directory:
 - ``deid_config_stanford.yaml``
 - ``deid_config_roberta.yaml``
+
 These files contain configurations for the de-identifiers used in the script.
 
 ## Running the Script
