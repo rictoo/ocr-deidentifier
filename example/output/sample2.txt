@@ -1,0 +1,83 @@
+                     Pathology Report
+                     Confidential: For Authorized Personnel Only
+                     [redacted]
+                     Report No.: [redacted]
+                     Patient Information (CONFIDENTIAL)
+                                                                                                                        [redacted]
+                      Patient Name                   [redacted]                         Home Address
+                                                                                                                        [redacted]
+                      [redacted]                     [redacted]
+                                                                                                                        [redacted]
+                                                                                        Referring Physician             [redacted]
+                      Medical Record No. [redacted]
+                                                                                        Physician Contact               [redacted]
+                      [redacted] No.                                                    Report Date                     [redacted]
+                                                     [redacted]
+                     Clinical History
+                     The patient, [redacted], was referred due to symptoms of persistent abdominal
+                     discomfort, mild jaundice, and significant weight loss over three months. Imaging (MRI)
+                     indicated a mass in the hepatic region. Elevated liver enzymes (AST, ALT) and marginally raised
+                     AFP levels were noted. Family history of malignancy prompted this biopsy request. Previous
+                     cases include benign adenomas from [redacted] (Ref: File No. [redacted]}.
+                     Specimen Details
+                     Specimen 1D: [redacted]
+                     Specimen Type: Liver biopsy
+                     Procedure Date: [redacted]
+                     Received Date: [redacted]
+                     Macroscopic Description
+                                                    Details
+                       Feature
+                       Dimensions                   2.5 cm (length) x 0.3 cm (diameter)
+                       Appearance                   Firm, tan-brown tissue with slightly granular texture; no gross necrosis
+                                                    or hemorrhage
+                       Observations                 Nodular surface, tan color, and homogenous consistency
+                       Special Notes                No encapsulation or defined margins, suggesting invasive nature
+                     Microscopic Findings
+                     Hematoxylin and Eosin (H&E) staining was performed, and slides reveal the following features:
+                                  Cellular Architecture: The tissue displays a nodular pattern with dense cellularity,
+                                  suggestive of a potential neoplastic process. Cells are predominantly polygonal with
+                                  abundant eosinophilic cytoplasm.
+                                  Nuclear Features: Nuclei appear pleomorphic, with occasional large nucleoli. Some
+                                  cells display mitotic figures, although at a low rate.
+                                  Fibrosis and Vascularity: A moderate degree of fibrosis is present, interspersed with
+                                  small-caliber blood vessels. Areas with mild vascular proliferation and congestion are
+                                  noted.
+                                  Infiltrative Edges: The lesion shows poorly defined infiltrative margins, potentially
+                                  extending beyond the biopsy core, indicative of invasive behavior.
+                       Immunohistochemical Analysis
+                       Immunohistochemistry was conducted using the following panel:
+                                  HepPar-1: Positive, indicating hepatic origin.
+                                  CK7/CK20: Negative, suggesting the lesion may be primary rather than metastatic from
+                                  other adenocarcinomas.
+                                  Glypican-3: Positive, which is often associated with hepatocellular carcinoma.
+                                  Ki-67 Proliferation Index: Approximately 20%, indicating a moderately proliferative
+                                  activity, consistent with a low-to-moderate grade malignancy.
+                                  p53 Mutation Analysis: Mild aberrations were observed, but no definitive mutations
+                                  indicating aggressive pathology were noted.
+                       Additional Testing Recommendations
+                                  Genomic Testing: Due to the family history of malignancy and presence of hepatic
+                                  lesion, genomic sequencing could provide further insight into specific driver mutations.
+                                  Repeat Imaging: Follow-up MRI with contrast enhancement in 4-6 weeks to assess
+                                  growth rate and lesion progression.
+                                  Clinical Consult: Immediate oncological referral for treatment options.
+                      Summary Diagnosis
+                       Primary Diagnosis                  Hepatocellular carcinoma ([redacted]), low-to-moderate grade with
+                                                          moderate fibrosis and low mitotic index
+                       Clinical Stage                     Likely early stage; infiltrative features suggest need for follow-up
+                                                          staging via imaging
+                                                          Favorable with early intervention; close monitoring advised for
+                       Prognosis
+                                                          potential invasive spread
+                      Recommendations and Prognosis
+                      Early intervention is suggested based on low-to-moderate grade findings. Options include
+                      surgical resection, depending on the lesion’s proximity to vascular structures. Additional
+                      therapies such as localized ablation may be discussed following final staging.
+                      Follow-Up:
+                                 Consultation with Oncologist: Discuss further intervention options based on lesion
+                                 staging.
+                                 Genetic Counseling: Due to family history and potential genetic predispositions.
+                      Authorization and Confidentiality Notice
+                       Authorized By                  [redacted]
+                       Title                          Lead Consultant
+                                                      Pathologist
+                       Facility Contact               [redacted]

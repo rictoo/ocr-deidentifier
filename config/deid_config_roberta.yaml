@@ -1,0 +1,31 @@
+nlp_engine_name: transformers
+models:
+  -
+    lang_code: en
+    model_name:
+      spacy: en_core_web_sm
+      transformers: obi/deid_roberta_i2b2
+
+ner_model_configuration:
+  labels_to_ignore:
+  - O
+  aggregation_strategy: simple 
+  stride: 16
+  alignment_mode: expand 
+  model_to_presidio_entity_mapping:
+    DATE: DATE_TIME
+    STAFF: PERSON
+    HOSP: ORGANIZATION
+    AGE: AGE
+    LOC: LOCATION
+    PATIENT: PERSON
+    PHONE: PHONE_NUMBER
+    ID: ID
+    PATORG: ORGANIZATION
+    EMAIL: EMAIL
+    OTHERPHI: OTHER
+
+  low_confidence_score_multiplier: 0.4
+  low_score_entity_names:
+  - ID
+  #- LOCATION

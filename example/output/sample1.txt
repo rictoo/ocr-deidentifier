@@ -1,0 +1,89 @@
+                                                                           CENTRAL PATHOLOGY SERVICES
+                         [redacted]                                                                                                     REPORT No. [redacted]
+                           SURNAME                                                  [redacted]                                          [redacted] No.
+                           [redacted]                                              [redacted]                                           [redacted]
+                           HOME ADDRESS                                            DATE OF BIRTH                                        REQUESTOR/SOURCE
+                           [redacted]                                              [redacted]                                           [redacted]
+                           [redacted]                                                                                                   [redacted]
+                           [redacted]                                                                                                   [redacted]
+                           [redacted]
+                                                                                   Copy to:
+                           HOSP No: [redacted]                                     [redacted]
+                                                                                   [redacted]
+                                                                                   [redacted]
+                                                                                   [redacted]
+                         Clinical Information:
+                         Patient [redacted] was referred to [redacted] Pathology Services by [redacted] following an assessment
+                         indicating potential inflammatory or neoplastic changes. The referral was prompted by a complex clinical
+                         picture involving persistent discomfort, localized swelling, and non-specific systemic symptoms including
+                         intermittent low-grade fever and fatigue. Imaging studies (including MRI and CT scans) highlighted a mass in
+                         the soft tissue of the right side, characterized by irregular borders and a heterogeneous internal texture
+                         suggestive of a mixed lesion. Previous assessments (file [redacted]) documented a history of benign fibrous
+                         growths, though recent changes in the patient's clinical profile raised concerns for potential malignant
+                         transformation. Laboratory studies, including blood work, returned elevated inflammatory markers (C-reactive
+                         protein and erythrocyte sedimentation rate), while tumor markers remained within normal limits.
+                         To confirm the nature of the lesion and determine any malignancy risk, a biopsy was performed, yielding two
+                         specimens from the affected region. Both specimens have been assessed and documented below with a
+                         detailed macroscopic examination.
+                         Macroscopic Description:
+                         Specimen 1
+                                    Location: Right-side soft tissue
+                                    Type: Excision biopsy, soft tissue
+                                    Dimensions: 50 x 29x 31mm
+                                    Appearance: Specimen comprises multiple irregular fragments of firm, pale tissue with an uneven,
+                                    nodular surface. A granular texture is observed throughout, with several focal areas of discoloration
+                                    ranging from light tan to pale yellow. Portions of the tissue display increased firmness, consistent with
+                                    fibrotic regions. The appearance and consistency of the tissue are suggestive of possible chronic
+                                    inflammatory response or early stages of neoplastic transformation. No encapsulated structure or
+                                    sharply defined margins were noted, indicating an infiltrative pattern rather than a well-defined mass,
+                                    which could support a diagnosis leaning towards a malignant etiology.
+                                    Additional Findings: Upon sectioning, the internal aspect of the specimen shows a heterogeneous
+                                    appearance with areas of fibrosis interspersed with softer, more gelatinous regions, potentially
+                                    consistent with necrosis or cystic degeneration. Margins are poorly defined, suggesting the possibility
+                                    of an invasive lesion. Histological analysis is recommended to confirm findings and determine cellular
+                                    composition,
+                        Specimen 2
+                                    Location: Right-side adipose and fibrous tissue sample
+                                    Type: Soft tissue biopsy, adipose/fibrous composition
+                                    Dimensions: Approximately 40 x 25 x 20 mm
+                                        Appearance: Specimen consists of fibrous and fatty tissue fragments exhibiting minor focal areas of
+                                        calcification, The external surface appears lobulated and lacks clear encapsulation, suggestive of
+                                        disorganized tissue growth. Notable regions of increased density were palpated during gross
+                                        examination, indicative of potential calcified deposits. These focal areas may represent areas of
+                                        chronic degeneration. Additionally, the fatty component of the tissue shows a mottled appearance,
+                                        interspersed with firmer, fibrous regions.
+                                        Additional Observations: Some portions of the tissue exhibit minor vascular proliferation, with
+                                        visible, tortuous vessels suggesting an attempt at angiogenesis, which is often seen in both
+                                        inflammatory and neoplastic processes. While no distinct tumor-like mass is present, the disorganized
+                                        structure and calcification raise the possibility of prior inflammatory activity or low-grade
+                                        fibromatosis.
+                           Further Observations:
+                           Both specimens display characteristics consistent with the patient’s previous diagnosis of benign fibrous
+                           growths. However, given the irregular structure, infiltrative appearance, and areas of calcification observed in
+                           both samples, further microscopic analysis is warranted. Immunohistochemistry studies may provide
+                           additional insight, particularly to assess markers associated with soft tissue neoplasms (e.g., SMA, desmin, S-
+                           100, and Ki-67). Comparative analysis with previous tissue samples (if available) is also recommended to assess
+                           any recent cellular or structural changes.
+                           Microscopic Examination Recommendations:
+                           Histopathological analysis should include the following:
+                                        Hematoxylin and Eosin (H&E) staining: To assess cellular morphology and presence of any atypia.
+                                       Immunohistochemistry (IHC) panel: For differentiation of tumor type, specifically to evaluate
+                                        markers associated with sarcomatous lesions.
+                                       Special stains (if warranted): Periodic acid-Schiff (PAS) stain may help identify any glycogen-rich
+                                       areas; Masson's trichrome could elucidate the extent of fibrosis.
+                                        Molecular testing: Genetic profiling (if warranted by IHC results) to identify potential driver mutations
+                                       or translocations common in soft tissue tumors.
+                           Conclusion:
+                           The gross morphology of the specimens raises a differential diagnosis of chronic inflammatory pseudotumor
+                           versus low-grade sarcoma, particularly given the infiltrative nature and absence of encapsulation. Though
+                           histopathology remains pending, the current assessment supports the clinical findings of an abnormal tissue
+                           proliferation pattern, warranting close clinical and histological follow-up. Differential considerations also
+                           include benign fibromatosis with atypical features or a low-grade fibrosarcoma, though additional microscopic
+                           confirmation is necessary for a definitive diagnosis.
+                           Upon completion of histological analysis, a full diagnostic summary will be provided to guide subsequent
+                           clinical management. Based on these findings, options for surgical intervention, radiation therapy, or
+                           chemotherapy will be discussed with the referring physician, [redacted], to determine the most
+                           appropriate treatment course.
+                                                                      Authorised by:                       [redacted]
+                                                                                                           Consultant Pathologist
+                            SPECIMEN DATE: [redacted] = RECEIVED: [redacted]                                                         AUTHORISED: [redacted]
