@@ -7,8 +7,8 @@ import logging
 from tqdm import tqdm
 import warnings
 
-os.environ["FONTCONFIG_FILE"] = os.getcwd() + r"\config\fontconfig.cfg"
-os.environ["FONTCONFIG_PATH"] = os.getcwd() + r"\config"
+fontconfig_file = os.path.join(os.getcwd(), "config", "fontconfig.cfg")
+fontconfig_path = os.path.join(os.getcwd(), "config")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(message)s')
 
