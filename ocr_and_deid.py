@@ -7,8 +7,8 @@ import logging
 from tqdm import tqdm
 import warnings
 
-fontconfig_file = os.path.join(os.getcwd(), "config", "fontconfig.cfg")
-fontconfig_path = os.path.join(os.getcwd(), "config")
+os.environ["FONTCONFIG_FILE"] = os.path.join(os.getcwd(), "config", "fontconfig.cfg")
+os.environ["FONTCONFIG_PATH"] = os.path.join(os.getcwd(), "config")
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(message)s')
 
@@ -76,7 +76,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "-f", "--overwrite",
-    action="store_false",
+    action="store_true",
     help="Force overwrite of output files if they already exist"
 )
 args = parser.parse_args()
@@ -450,7 +450,7 @@ redaction_info = []  # This list will hold our redaction indices
 #for file in all_files:
 for report_name, page_file in tqdm([(key, value) for key, values in all_files.items() for value in values]):
     if report_name not in processed_identifiers:
-        if overwrite_flag and os.path.exists(os.path.join(output_directory, f"{report_name}.txt")):
+        if not overwrite_flag and os.path.exists(os.path.join(output_directory, f"{report_name}.txt")):
             continue
         processed_identifiers.add(report_name)
         complete_text = []  # Zero'ing out for the next document
