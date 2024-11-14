@@ -589,4 +589,4 @@ for report_name, page_file in tqdm([(key, value) for key, values in all_files.it
     with open(output_file_path, 'w') as f:
         f.write(anonymized_text)
 
-print(f"Processed {len(processed_identifiers)}/{len(all_files)} reports.")
+logging.info(f"Processed {len(processed_identifiers)}/{len(all_files)} reports.")
