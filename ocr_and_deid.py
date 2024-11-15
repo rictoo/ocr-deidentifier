@@ -580,8 +580,6 @@ for report_name, page_file in tqdm([(key, value) for key, values in all_files.it
         redacted_plaintext = convert_ocr_to_text_with_normalized_spacing(redacted_text['pages'][0])
         # Further check to remove postcodes and identifiers:
         redacted_plaintext = remove_uk_postcodes(redacted_plaintext)
-
-        # For removing instances of the base filename from the document, in case it represents a personal identifier.
         anonymized_text += ('\n' if len(anonymized_text) != 0 else '') + redacted_plaintext
 
     # Save the de-identified text with report name as the filename
