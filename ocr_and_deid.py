@@ -584,7 +584,7 @@ for report_name, page_file in tqdm([(key, value) for key, values in all_files.it
         # For removing instances of the base filename from the document, in case it represents a personal identifier.
         anonymized_text += ('\n' if len(anonymized_text) != 0 else '') + redacted_plaintext
 
-    # Save the de-identified text with report count in the filename
+    # Save the de-identified text with report name as the filename
     output_file_path = os.path.join(output_directory, f"{report_name}.txt")
     with open(output_file_path, 'w') as f:
         f.write(anonymized_text)
