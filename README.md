@@ -1,5 +1,5 @@
 # OCR and De-identification Pipeline
-This repository contains a Python script that performs Optical Character Recognition (OCR) and de-identification on images containing text, such as scanned medical reports. The script processes images, extracts text, and de-identifies sensitive information using NLP models while attempting to preserve the layout of the original document.
+This repository contains a Python script that performs Optical Character Recognition (OCR) and de-identification on scanned documents containing text, such as scanned medical reports. The script processes images, extracts text, and de-identifies sensitive information using NLP models while attempting to preserve the layout of the original document.
 
 ## Example Reports
 Example inputs, in the form of medical reports, and outputs are provided in the ``example`` directory.
