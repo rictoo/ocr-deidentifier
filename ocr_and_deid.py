@@ -540,10 +540,10 @@ for report_name, page_file in tqdm([(key, value) for key, values in all_files.it
             results_english_roberta = analyzer_roberta.analyze(text=' '.join(block_contents), language="en")
 
             # De-identify UK postcodes
-            #results_postcode = postcode_recognizer.analyze(text=' '.join(block_contents), entities=["UK_POSTCODE"])
+            results_postcode = postcode_recognizer.analyze(text=' '.join(block_contents), entities=["UK_POSTCODE"])
 
             # Merge all de-identifications
-            results_english_merged = results_english_roberta + results_english_stanford #+ results_postcode
+            results_english_merged = results_english_roberta + results_english_stanford + results_postcode
 
             # Drop these two PII categories, as they seem to result in lots of false positives
             results_english = [x for x in results_english_merged if x.entity_type not in ['US_DRIVER_LICENSE', 'IN_PAN']]
