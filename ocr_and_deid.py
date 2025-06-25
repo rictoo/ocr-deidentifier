@@ -112,7 +112,7 @@ analyzer_roberta = AnalyzerEngine(
 )
 
 postcode_pattern = Pattern(name="postcode_pattern", regex='([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})', score = 1.0)
-postcode_recognizer = PatternRecognizer(supported_entity="UK_POSTCODE", patterns = [postcode_pattern])
+postcode_recognizer = PatternRecognizer(supported_entity="UK_POSTCODE", patterns = [postcode_pattern], global_regex_flags=re.DOTALL | re.MULTILINE)
 
 engine = AnonymizerEngine()
 
