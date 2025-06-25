@@ -117,7 +117,7 @@ postcode_recognizer = PatternRecognizer(supported_entity="UK_POSTCODE", patterns
 engine = AnonymizerEngine()
 
 if not os.path.exists(output_directory):
-    os.makedirs(path)
+    os.makedirs(output_directory)
 
 # Function to extract report identifier and page number from filename
 def extract_info(filename):
