@@ -79,42 +79,52 @@ parser.add_argument(
     action="store_true",
     help="Force overwrite of output files if they already exist"
 )
+parser.add_argument(
+    "--ocr-only",
+    action="store_true",
+    help="Only run OCR and skip de-identification (no redaction)"
+)
 args = parser.parse_args()
 input_directory = args.input_dir
 output_directory = args.output_dir
 overwrite_flag = args.overwrite
+ocr_only = args.ocr_only
 
 pytesseract.pytesseract.tesseract_cmd = args.tesseract
+if ocr_only:
+    logging.info("OCR-only mode enabled: de-identification will be skipped.")
 
 # Load text detection model (for bounding boxes)
 logging.info("Loading the text detection model.")
 model = detection_predictor(arch='db_resnet50', pretrained=True)  # Run your code that triggers the warning
 
-# De-identification
-conf_file_stanford = 'config/deid_config_stanford.yaml'
-conf_file_roberta = 'config/deid_config_roberta.yaml'
+# De-identification (conditionally load)
+if not ocr_only:
+    conf_file_stanford = 'config/deid_config_stanford.yaml'
+    conf_file_roberta = 'config/deid_config_roberta.yaml'
 
-transformers_model_stanford = "StanfordAIMI/stanford-deidentifier-base"
-transformers_model_roberta = "obi/deid_roberta_i2b2"
+    transformers_model_stanford = "StanfordAIMI/stanford-deidentifier-base"
+    transformers_model_roberta = "obi/deid_roberta_i2b2"
 
-logging.info("Loading the de-identification models.")
-nlp_engine_stanford = NlpEngineProvider(conf_file=conf_file_stanford).create_engine()
-nlp_engine_roberta = NlpEngineProvider(conf_file=conf_file_roberta).create_engine()
+    logging.info("Loading the de-identification models.")
+    nlp_engine_stanford = NlpEngineProvider(conf_file=conf_file_stanford).create_engine()
+    nlp_engine_roberta = NlpEngineProvider(conf_file=conf_file_roberta).create_engine()
 
-analyzer_stanford = AnalyzerEngine(
-    nlp_engine = nlp_engine_stanford,
-    supported_languages=["en"]
-)
+    analyzer_stanford = AnalyzerEngine(
+        nlp_engine = nlp_engine_stanford,
+        supported_languages=["en"]
+    )
+    analyzer_roberta = AnalyzerEngine(
+        nlp_engine = nlp_engine_roberta,
+        supported_languages=["en"]
+    )
 
-analyzer_roberta = AnalyzerEngine(
-    nlp_engine = nlp_engine_roberta,
-    supported_languages=["en"]
-)
+    postcode_pattern = Pattern(name="postcode_pattern", regex='([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})', score = 1.0)
+    postcode_recognizer = PatternRecognizer(supported_entity="UK_POSTCODE", patterns = [postcode_pattern], global_regex_flags=re.DOTALL | re.MULTILINE)
 
-postcode_pattern = Pattern(name="postcode_pattern", regex='([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})', score = 1.0)
-postcode_recognizer = PatternRecognizer(supported_entity="UK_POSTCODE", patterns = [postcode_pattern], global_regex_flags=re.DOTALL | re.MULTILINE)
-
-engine = AnonymizerEngine()
+    engine = AnonymizerEngine()
+else:
+    logging.info("Skipping de-identification model loading.")
 
 if not os.path.exists(output_directory):
     os.makedirs(output_directory)
@@ -523,64 +533,71 @@ for report_name, page_file in tqdm([(key, value) for key, values in all_files.it
 
     complete_text.append(result)
 
-    # De-identification, performed on each page-block element combination
-    for page_idx, page_text in enumerate(complete_text):
-        page = page_text.pages[0]
-        redaction_info.append({})
-        # Loop through each block in the page
-        for block_idx, block in enumerate(page.blocks):
-            block_contents = [] # Stores all words within this block
-            for line_idx, line in enumerate(block.lines):
-                for word in line.words:
-                    block_contents.append(word.value)
-            redaction_info[page_idx][block_idx] = []
+    # De-identification, performed on each page-block element combination (if enabled)
+    if not ocr_only:
+        for page_idx, page_text in enumerate(complete_text):
+            page = page_text.pages[0]
+            redaction_info.append({})
+            # Loop through each block in the page
+            for block_idx, block in enumerate(page.blocks):
+                block_contents = [] # Stores all words within this block
+                for line_idx, line in enumerate(block.lines):
+                    for word in line.words:
+                        block_contents.append(word.value)
+                redaction_info[page_idx][block_idx] = []
 
-            # Run both de-identification models on text block
-            results_english_stanford = analyzer_stanford.analyze(text=' '.join(block_contents), language="en")
-            results_english_roberta = analyzer_roberta.analyze(text=' '.join(block_contents), language="en")
+                # Run both de-identification models on text block
+                results_english_stanford = analyzer_stanford.analyze(text=' '.join(block_contents), language="en")
+                results_english_roberta = analyzer_roberta.analyze(text=' '.join(block_contents), language="en")
 
-            # De-identify UK postcodes
-            results_postcode = postcode_recognizer.analyze(text=' '.join(block_contents), entities=["UK_POSTCODE"])
+                # De-identify UK postcodes
+                results_postcode = postcode_recognizer.analyze(text=' '.join(block_contents), entities=["UK_POSTCODE"])
 
-            # Merge all de-identifications
-            results_english_merged = results_english_roberta + results_english_stanford + results_postcode
+                # Merge all de-identifications
+                results_english_merged = results_english_roberta + results_english_stanford + results_postcode
 
-            # Drop these two PII categories, as they seem to result in lots of false positives
-            results_english = [x for x in results_english_merged if x.entity_type not in ['US_DRIVER_LICENSE', 'IN_PAN']]
+                # Drop these two PII categories, as they seem to result in lots of false positives
+                results_english = [x for x in results_english_merged if x.entity_type not in ['US_DRIVER_LICENSE', 'IN_PAN']]
 
-            # Merge overlapping/adjacent de-identification indices
-            results_english = merge_overlapping_entities(results_english)
+                # Merge overlapping/adjacent de-identification indices
+                results_english = merge_overlapping_entities(results_english)
 
-            # Prevent erroneous de-identification of ICD codes and marker status (ER/PR, etc.)
-            pattern = r"\b[TMP](-?\d{5})(-?[A-Za-z])?\b"
-            results_english = [x for x in results_english if not re.search(pattern, ' '.join(block_contents)[x.start:x.end])]
-            pattern = r"^\d/8$"
-            results_english = [x for x in results_english if not re.search(pattern, ' '.join(block_contents)[x.start:x.end])]
+                # Prevent erroneous de-identification of ICD codes and marker status (ER/PR, etc.)
+                pattern = r"\b[TMP](-?\d{5})(-?[A-Za-z])?\b"
+                results_english = [x for x in results_english if not re.search(pattern, ' '.join(block_contents)[x.start:x.end])]
+                pattern = r"^\d/8$"
+                results_english = [x for x in results_english if not re.search(pattern, ' '.join(block_contents)[x.start:x.end])]
 
-            # Replace text falling within de-identification indices with hashes (#)
-            anonymized_text = engine.anonymize(' '.join(block_contents), results_english, operators =
-                                              {"DEFAULT":OperatorConfig("custom",
-                                                                       {"lambda": lambda x: "#"*len(x)})})
+                # Replace text falling within de-identification indices with hashes (#)
+                anonymized_text = engine.anonymize(' '.join(block_contents), results_english, operators =
+                                                  {"DEFAULT":OperatorConfig("custom",
+                                                                           {"lambda": lambda x: "#"*len(x)})})
 
-            # Process the anonymized results to get the start and end indices
-            for item in anonymized_text.items:
-                (start_word_idx, start_idx_in_word), (end_word_idx, end_idx_in_word) = (
-                    find_word_indices_for_char_positions(block_contents, item.start, item.end)
-                )
+                # Process the anonymized results to get the start and end indices
+                for item in anonymized_text.items:
+                    (start_word_idx, start_idx_in_word), (end_word_idx, end_idx_in_word) = (
+                        find_word_indices_for_char_positions(block_contents, item.start, item.end)
+                    )
 
-                redaction_info[page_idx][block_idx].append(
-                    (start_word_idx, start_idx_in_word, end_word_idx, end_idx_in_word)
-                )
+                    redaction_info[page_idx][block_idx].append(
+                        (start_word_idx, start_idx_in_word, end_word_idx, end_idx_in_word)
+                    )
 
     anonymized_text = ''
 
-    # For every page (Document object) and corresponding redaction dictionary (with keys corresponding to block elements)
-    for page_text, page_redactions in zip(complete_text, redaction_info):
-        redacted_text = redact_and_update_geometries(page_text.export(), page_redactions)
-        redacted_plaintext = convert_ocr_to_text_with_normalized_spacing(redacted_text['pages'][0])
-        # Further check to remove postcodes and identifiers:
-        redacted_plaintext = remove_uk_postcodes(redacted_plaintext)
-        anonymized_text += ('\n' if len(anonymized_text) != 0 else '') + redacted_plaintext
+    if ocr_only:
+        # OCR-only path: no redaction, just convert OCR to plaintext
+        for page_text in complete_text:
+            plaintext = convert_ocr_to_text_with_normalized_spacing(page_text.export()['pages'][0])
+            anonymized_text += ('\n' if len(anonymized_text) != 0 else '') + plaintext
+    else:
+        # For every page (Document object) and corresponding redaction dictionary (with keys corresponding to block elements)
+        for page_text, page_redactions in zip(complete_text, redaction_info):
+            redacted_text = redact_and_update_geometries(page_text.export(), page_redactions)
+            redacted_plaintext = convert_ocr_to_text_with_normalized_spacing(redacted_text['pages'][0])
+            # Further check to remove postcodes and identifiers:
+            redacted_plaintext = remove_uk_postcodes(redacted_plaintext)
+            anonymized_text += ('\n' if len(anonymized_text) != 0 else '') + redacted_plaintext
 
     # Save the de-identified text with report name as the filename
     output_file_path = os.path.join(output_directory, f"{report_name}.txt")

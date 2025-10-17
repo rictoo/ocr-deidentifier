@@ -45,6 +45,8 @@ The script accepts the following arguments:
 
 ``-f``, ``--overwrite``: Optional. Force overwrite of output files if they already exist.
 
+``--ocr-only``: Optional. Run only the OCR steps and skip de-identification.
+
 ### Input Image Format
 The input images should follow the naming convention:
 ```
